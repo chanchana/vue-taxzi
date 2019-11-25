@@ -40,7 +40,16 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
+    'nuxt-socket-io',
   ],
+  io: {
+    sockets: [
+      {
+        name: 'chat',
+        url: 'http://127.0.0.1:9999/',
+      },
+    ]
+  },
   /*
   ** Build configuration
   */
