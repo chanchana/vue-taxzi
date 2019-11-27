@@ -23,7 +23,7 @@ export default {
 }
 .name {
   font-size: 12px;
-  margin: 5px;
+  margin: 8px 0px 10px 5px;
   color:gray;
 }
 .bubble {
