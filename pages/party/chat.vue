@@ -2,12 +2,13 @@
   <div class="bg">
     <ChatNav />
     <!-- <TypeBar /> -->
-    <b-form-input v-model="chatid" placeholder="CHATID"></b-form-input>
-    <b-form-input v-model="userid" placeholder="USERID"></b-form-input>
+    <!-- <b-form-input v-model="chatid" placeholder="CHATID"></b-form-input>
+    <b-form-input v-model="userid" placeholder="USERID"></b-form-input> -->
 
     <div class="message-area">
       <div v-for="c in chat">
-        <ChatBubbleLeft v-if="c.userid != userid" :name="c.name" :message="c.message" />
+        <ChatBubbleNone v-if="c.userid == ''" :message="c.message" />
+        <ChatBubbleLeft v-if="c.userid != userid && c.userid != ''" :name="c.name" :message="c.message" />
         <ChatBubbleRight v-if="c.userid == userid" :name="c.name" :message="c.message" />
       </div>
     </div>
@@ -15,12 +16,12 @@
 
     <div class="type-bar">
       <b-row class="text-center">
-        <b-col cols="1">+</b-col>
+        <b-col cols="1" style="padding:5px 0px 0px 15px"><fa icon="plus"></fa></b-col>
         <b-col>
           <b-input-group>
             <b-form-input class="taxzi-form" v-model="message" placeholder="Message..."></b-form-input>
-            <b-input-group-append>
-              <b-button class="taxzi-form-button" @click="sendMessage">Send</b-button>
+            <b-input-group-append style="background-color:rgb(223, 223, 223);border-radius:0px 999px 999px 0px;">
+              <b-button class="taxzi-form-button" variant="link" @click="sendMessage"><fa icon="paper-plane"></fa></b-button>
             </b-input-group-append>
           </b-input-group>
         </b-col>
@@ -34,18 +35,20 @@ import ChatNav from "~/components/chat/ChatNav.vue";
 import TypeBar from "~/components/chat/TypeBar.vue";
 import ChatBubbleLeft from "~/components/chat/ChatBubbleLeft.vue";
 import ChatBubbleRight from "~/components/chat/ChatBubbleRight.vue";
+import ChatBubbleNone from "~/components/chat/ChatBubbleNone.vue";
 
 export default {
   components: {
     ChatNav,
-    TypeBar,
+    // TypeBar,
     ChatBubbleLeft,
     ChatBubbleRight,
+    ChatBubbleNone,
   },
   data() {
     return {
       chatData: {},
-      chat: [],
+      chat: [{userid:'', message:''}, {userid:'', message:''}, {userid:'', message:''}],
       name: "",
       message: "",
       chatid: "5dde529b3dc19a0c80455a95",
@@ -84,13 +87,15 @@ export default {
   },
   methods: {
     sendMessage() {
-      console.log("Sent");
-      this.socket.emit("chat-event", {
-        chatid: this.chatid,
-        userid: this.userid,
-        message: this.message
-      });
-      this.message = "";
+      if (this.message != '') {
+        console.log("Sent");
+        this.socket.emit("chat-event", {
+          chatid: this.chatid,
+          userid: this.userid,
+          message: this.message
+        });
+        this.message = "";
+      }
     },
     addMessage(message) {
       message['name'] = this.getName(message.userid)
@@ -117,12 +122,13 @@ export default {
   border: none;
   border-radius: 999px;
   color: black;
-  text-decoration-color: azure;
 }
 .taxzi-form-button {
-  background-color: white;
+  background-color: none;
+  border: none;
   border-radius: 999px;
-  color: cornflowerblue;
+  font-size: 18px;
+  color: rgb(255, 145, 0);
 }
 .bg {
   background-color: whitesmoke;
@@ -135,7 +141,9 @@ export default {
   padding: 20px;
   bottom: 0px;
   height: 80px;
+  width: 100%;
   z-index: 10;
+  vertical-align:middle;
 }
 .messages-box {
   position: absolute;
@@ -151,7 +159,7 @@ export default {
   position: absolute;
   overflow: auto;
   max-height: 100%;
-  padding: 330px 10px 90px 10px;
+  padding: 120% 10px 90px 10px;
   bottom: 0px;
   width: 100%;
   z-index: -1;

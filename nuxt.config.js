@@ -43,6 +43,16 @@ export default {
     '@nuxtjs/proxy',
     'bootstrap-vue/nuxt',
     'nuxt-socket-io',
+    ['nuxt-fontawesome', {
+      component: 'fa', 
+      imports: [
+        //import whole set
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['fas']
+        }
+      ]
+    }]
   ],
   io: {
     sockets: [
