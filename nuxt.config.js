@@ -41,7 +41,13 @@ export default {
     // Doc: https://bootstrap-vue.js.org
     '@nuxtjs/axios',
     'bootstrap-vue/nuxt',
+    'nuxt-webfontloader',
   ],
+  webfontloader: {
+    google: {
+      families: ['Nunito:400,700'] //Loads Lato font with weights 400 and 700
+    }
+  },
   /*
   ** Build configuration
   */
