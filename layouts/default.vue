@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <nuxt/>
+  <div class="custom-font">
+    <nuxt />
   </div>
 </template>
 
@@ -11,9 +11,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  
+
+  .custom-font {
+    font-family: 'Nunito', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  font-family: 'Nunito', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;

@@ -19,7 +19,8 @@
     "bootstrap-vue": "^2.0.0",
     "nuxt": "^2.0.0",
     "nuxt-fontawesome": "^0.4.0",
-    "nuxt-socket-io": "^1.0.4"
+    "nuxt-socket-io": "^1.0.4",
+    "nuxt-webfontloader": "^1.1.0"
   },
   "devDependencies": {}
 }
