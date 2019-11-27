@@ -40,6 +40,7 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     'bootstrap-vue/nuxt',
     'nuxt-socket-io',
   ],
@@ -47,9 +48,16 @@ export default {
     sockets: [
       {
         name: 'chat',
-        url: 'http://127.0.0.1:9999/',
+        url: 'http://taxzi.herokuapp.com',
+        // url: 'localhost:9999/',
+        transports: ['websocket'],
       },
     ]
+  },
+  axios: {
+    baseUrl: 'https://taxzi.herokuapp.com',
+    proxyHeaders: false,
+    credentials: false,
   },
   /*
   ** Build configuration
