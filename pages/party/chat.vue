@@ -2,23 +2,23 @@
   <div class="bg">
     <ChatNav />
     <!-- <TypeBar /> -->
-
-
+    <b-form-input v-model="chatid" placeholder="CHATID"></b-form-input>
+    <b-form-input v-model="userid" placeholder="USERID"></b-form-input>
+            
     <div class="message-area" id="mbox">
       <!-- <div style="height:220px"></div> -->
       <div v-for="c in chat">
-        <p>{{c.name}}: {{c.msg}}</p>
+        <ChatBubbleLeft :name="c.userid" :message="c.message" />
       </div>
     </div>
-    <div class="messages-box">
-    </div>
+    <div class="messages-box"></div>
 
     <div class="type-bar">
       <b-row class="text-center">
         <b-col cols="1">+</b-col>
         <b-col>
           <b-input-group>
-            <b-form-input v-model="msg" placeholder="Message..."></b-form-input>
+            <b-form-input v-model="message" placeholder="Message..."></b-form-input>
             <b-input-group-append>
               <b-button @click="sendMessage">Send</b-button>
             </b-input-group-append>
@@ -26,23 +26,27 @@
         </b-col>
       </b-row>
     </div>
-
   </div>
 </template>
 
 <script>
-import ChatNav from "~/components/chat/ChatNav.vue";
-import TypeBar from "~/components/chat/TypeBar.vue";
+import ChatNav from "~/components/chat/ChatNav.vue"
+import TypeBar from "~/components/chat/TypeBar.vue"
+import ChatBubbleLeft from "~/components/chat/ChatBubbleLeft.vue"
+
 export default {
   components: {
     ChatNav,
-    TypeBar
+    TypeBar,
+    ChatBubbleLeft
   },
   data() {
     return {
       chat: [],
       name: "",
-      msg: ""
+      message: "",
+      chatid: '5dde529b3dc19a0c80455a95',
+      userid: '5ddd6af91a14aec5d2ea1ec6',
     };
   },
   mounted() {
@@ -52,16 +56,21 @@ export default {
     });
 
     this.socket.on("connect", () => {
-      this.socket.emit("chat-event", {
-        msg: "User Connected"
-      });
+      // this.socket.emit("chat-event", {
+      //   chatid: this.chatid,
+      //   userid: this.userid,
+      //   message: "CONECTED",
+      // })
       this.socket.on("chat-response", msg => {
         console.log(msg);
         this.chat.push(msg);
         var element = document.getElementById("mbox");
-        console.log(element.scrollTop)
-        console.log(element.scrollHeight)
-        element.scrollTop = element.scrollHeight
+        console.log(element.scrollTop);
+        console.log(element.scrollHeight);
+        element.scrollTop = element.scrollHeight;
+      })
+      this.socket.on("chat-error", msg => {
+        alert(msg)
       });
     });
   },
@@ -69,11 +78,12 @@ export default {
     sendMessage() {
       console.log("Sent");
       this.socket.emit("chat-event", {
-        name: this.name,
-        msg: this.msg
-      });
-      this.msg = ""
-    },
+        chatid: this.chatid,
+        userid: this.userid,
+        message: this.message,
+      })
+      this.msg = "";
+    }
   }
 };
 </script>
@@ -101,7 +111,6 @@ export default {
   padding: 125px 15px 95px 15px;
   z-index: -2;
   background-color: whitesmoke;
-
 }
 .message-area {
   position: absolute;
