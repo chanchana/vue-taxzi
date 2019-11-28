@@ -10,6 +10,13 @@
     Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
+  .taxzi-text-gradient {
+    background: rgb(0,61,255);
+    background: linear-gradient(137deg, rgba(0,61,255,1) 0%, rgba(255,119,0,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
 html {
   font-family: 'Nunito', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
