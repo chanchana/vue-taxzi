@@ -42,7 +42,9 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     'bootstrap-vue/nuxt',
+    'nuxt-webfontloader',
     'nuxt-socket-io',
+    'nuxt-webfontloader',
     ['nuxt-fontawesome', {
       component: 'fa', 
       imports: [
@@ -68,6 +70,11 @@ export default {
     baseUrl: 'https://taxzi.herokuapp.com',
     proxyHeaders: false,
     credentials: false,
+  },
+  webfontloader: {
+    google: {
+      families: ['Nunito:400,700'] //Loads Lato font with weights 400 and 700
+    }
   },
   /*
   ** Build configuration
