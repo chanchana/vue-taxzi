@@ -18,7 +18,7 @@
       <h2>{{id}}</h2>
       <h1>Gender</h1>
       <h2>{{gender}}</h2>
-      <button class="taxzi-button">Done</button>
+      <button @click="$router.push('/home')" class="taxzi-button">Done</button>
     </div>
   </div>
 </template>
@@ -27,9 +27,19 @@
 export default {
   data(){
     return {
-      name: 'Chanchana Wicha',
-      id: '60070503417',
-      gender: 'Male',
+      name: '',
+      id: '',
+      gender: '',
+    }
+  },
+  mounted() {
+    const user = this.$store.state.user
+    if(!user) {
+      this.$router.push('/user/login')
+    } else {
+      this.name = user.name
+      this.id = user.kmutt_id
+      this.gender = user.gender
     }
   }
 }

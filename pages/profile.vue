@@ -12,7 +12,7 @@
 
       <div class="taxzi-normal-button">Change Profile Picture<fa class="arrow-icon" icon="angle-right"/></div>
       <div class="taxzi-normal-button">Joining History<fa class="arrow-icon" icon="angle-right"/></div>
-      <div class="taxzi-normal-button" style="color:red">Logout<fa class="arrow-icon" icon="angle-right"/></div>
+      <div @click="tapLogout" class="taxzi-normal-button" style="color:red">Logout<fa class="arrow-icon" icon="angle-right"/></div>
     </div>
     <NavBar active="profile" />
   </div>
@@ -24,12 +24,27 @@ import NavBar from "~/components/NavBar.vue";
 export default {
   data() {
     return {
-      name: "Chanchana Wicha",
-      gender: "Male"
+      name: "NAME",
+      gender: "GENDER"
     };
   },
   components: {
     NavBar
+  },
+  mounted() {
+    const user = this.$store.state.user
+    if(user == null) {
+      this.$router.push('/user/login')
+    } else {
+      this.name = user.name
+      this.gender = user.gender
+    }
+  },
+  methods: {
+    tapLogout() {
+      this.$store.commit('clearuser')
+      this.$router.push('/user/login')
+    }
   }
 };
 </script>

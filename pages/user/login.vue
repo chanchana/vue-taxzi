@@ -1,5 +1,6 @@
 <template>
 <div>
+  <Loading v-if="isLoading"/>
   <div style="padding:120px 20px 20px 20px;text-align:center;">
     <!-- <h1 class="text-center pt-4 pb-5">TAXZI</h1> -->
     <img src="~/static/TaxziLogoGradient.png" style="height:80px">
@@ -45,13 +46,18 @@
 </template>
 
 <script>
+import Loading from "~/components/Loading.vue"
 
 export default {
+  components: {
+    Loading,
+  },
   data() {
     return {
+      isLoading: false,
       form: {
-        username: 'chanchana',
-        password: '123',
+        username: '',
+        password: '',
       },
       error: {
         isActive: false,
@@ -61,16 +67,18 @@ export default {
   },
   methods: {
     tapLogin() {
-      console.log('tap')
-      console.log(this.form)
-      this.$axios.$post('http://localhost:9999/login', {
+      this.isLoading = true
+      this.$axios.$post('http://taxzi.herokuapp.com/login', {
           username: this.form.username,
           password: this.form.password,
       }).then(res => {
         console.log(res)
         if(!res.status) {
+          this.isLoading = false
           alert(res.error)
         } else {
+          this.$store.commit('setuser', res.data)
+          this.isLoading = false
           this.$router.push('/home')
         }
       })
