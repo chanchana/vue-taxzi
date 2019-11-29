@@ -4,9 +4,9 @@
     <!-- <h1 class="text-center pt-4 pb-5">TAXZI</h1> -->
     <img src="~/static/TaxziLogoGradient.png" style="height:80px">
     <div class="d-flex justify-content-center">
-      <form class="form-horizontal" action="" method="" style="margin:120px 0px 0px 0px">
+      <div class="form-horizontal" style="margin:120px 0px 0px 0px">
         <!-- Username -->
-        <div class="control-group row pt-3">
+        <div class="row pt-3">
           <!-- <label class="control-label col-5" for="inputUsername">Username</label> -->
           <input
             class="taxzi-form input-form"
@@ -15,10 +15,11 @@
             name="inputUsername"
             id="inputUsername"
             placeholder="Username"
+            v-model="form.username"
           />
         </div>
         <!-- Password -->
-        <div class="control-group row pt-3">
+        <div class="row pt-3">
           <!-- <label class="control-label col-5" for="inputPassword">Password</label> -->
           <input
             class="taxzi-form input-form"
@@ -27,20 +28,56 @@
             name="inputPassword"
             id="inputPassword"
             placeholder="Password"
+            v-model="form.password"
           />
         </div>
-        <div class="control-group row pt-3" style="text-align:right;">
-            <a href="register" style="color:rgb(255, 107, 48);font-weight:700;font-size:18px;padding-left:240px">Register</a>
+        <div class="row pt-3" style="text-align:right;">
+            <a @click="$router.push('/user/register')" style="color:rgb(255, 107, 48);font-weight:700;font-size:18px;padding-left:240px">Register</a>
         </div>
         <!-- Button -->
-        <div class="control-group row pt-5 d-flex justify-content-center">
-          <button type="submit" class="taxzi-button">Login</button>
+        <div class="row pt-5 d-flex justify-content-center">
+          <button @click="tapLogin" class="taxzi-button">Login</button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
 </template>
+
+<script>
+
+export default {
+  data() {
+    return {
+      form: {
+        username: 'chanchana',
+        password: '123',
+      },
+      error: {
+        isActive: false,
+        message: '',
+      }
+    }
+  },
+  methods: {
+    tapLogin() {
+      console.log('tap')
+      console.log(this.form)
+      this.$axios.$post('http://localhost:9999/login', {
+          username: this.form.username,
+          password: this.form.password,
+      }).then(res => {
+        console.log(res)
+        if(!res.status) {
+          alert(res.error)
+        } else {
+          this.$router.push('/home')
+        }
+      })
+    }
+  }
+}
+</script>
 
 <style scoped>
 .bg {

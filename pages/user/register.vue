@@ -37,7 +37,7 @@
     >Next</button>
     <div style="padding:18px 38px 24px;font-size:14px;text-align:left">
       If you already have Taxzi account, you can
-      <a href="login" style="color:rgb(255, 107, 48); font-weight:700;">Login</a>
+      <a @click="$router.push('/user/login')" style="color:rgb(255, 107, 48); font-weight:700;">Login</a>
     </div>
   </div>
 </div>
