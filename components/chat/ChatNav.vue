@@ -7,13 +7,22 @@
           <b-col><div class="title"><b class="taxzi-text-gradient">Chat</b></div></b-col>
         </b-row>
         <b-row class="text-center">
-          <b-col><div class="sub-title">KMUTT -> Central wOrld</div></b-col>
+          <b-col><div class="sub-title">{{from}} <fa icon="arrow-right" style="font-size:12px;margin:0px 5px 1px 5px"/> {{to}}</div></b-col>
         </b-row>
       </b-col>
       <b-col cols="2" style="padding:20px 20px 20px 20px;font-size:20px;"><fa icon="ellipsis-h"/></b-col>
     </b-row>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    from: String,
+    to: String,
+  }
+}
+</script>
 
 <style scoped>
   .box {
