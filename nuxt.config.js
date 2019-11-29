@@ -42,6 +42,10 @@ export default {
     '@nuxtjs/axios',
     'bootstrap-vue/nuxt',
     'nuxt-webfontloader',
+    ['nuxt-gmaps', {
+      key: 'AIzaSyAfksy0yaY_oQczIOX8_QtxmPLe8bILiJo',
+      //you can use libraries: ['places']
+    }]
   ],
   webfontloader: {
     google: {
