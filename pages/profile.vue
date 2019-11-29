@@ -52,7 +52,7 @@ export default {
   background-color: white;
   font-weight: 700;
   height: 60px;
-  padding: 20px;
+  padding: 18px 24px;
   -webkit-box-shadow: 0px 11px 143px -20px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 0px 11px 143px -20px rgba(0, 0, 0, 0.7);
   box-shadow: 0px 11px 143px -20px rgba(0, 0, 0, 0.7);
