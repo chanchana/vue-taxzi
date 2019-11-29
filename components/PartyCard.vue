@@ -30,7 +30,10 @@
         </b-container>
       </div>
       <br>
-      <b-button class="rectangle-join custom-font" block @click="hideModal"><b style="font-size:28px; color:white;"><fa icon="user-plus" style="font-size:16px; color:white; padding:0px 0px 2px 0px;"/> Join</b></b-button>
+      <!-- {{isJoined}}, {{userid}}, {{infoData.members}} -->
+      <b-button v-if="isJoined" class="rectangle-join custom-font" block @click="hideModal"><b style="font-size:28px; color:white;"><fa icon="chat" style="font-size:16px; color:white; padding:0px 0px 2px 0px;"/> Chat</b></b-button>
+      <b-button v-if="!isJoined" class="rectangle-join custom-font" block @click="hideModal"><b style="font-size:28px; color:white;"><fa icon="user-plus" style="font-size:16px; color:white; padding:0px 0px 2px 0px;"/> Join</b></b-button>
+
     </b-modal>
     <button @click="showModal" class="rectangle">
       <b-container class="bv-example-row">
@@ -59,12 +62,25 @@ export default {
     PartyMember,
   },
   props: {
-    infoData: Object
+    infoData: Object,
+    userid: String,
   },
   data() {
     return {
       isOpen: false
     };
+  },
+  computed: {
+    isJoined() {
+      if(this.infoData) {
+        for(var i = 0;i < this.infoData.members.length; i++) {
+          if(this.userid == this.infoData.members[i]._id) {
+            return true
+          }
+        }
+      }
+      return false
+    }
   },
   methods: {
     showModal() {

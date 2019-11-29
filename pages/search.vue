@@ -6,7 +6,7 @@
     <div style="margin:0px 40px 20px 40px;padding:30px 0px 0px">
       <span class="taxzi-text-gradient" style="font-size:48px;font-weight:800;width:none;min-width:none;">Search</span>
     </div>
-        
+        <!-- {{user}} -->
     <form>
         <input id="rcorners1" type="text" v-model="search" placeholder="Destination,Time,..."/>
         <fa class="iconsearch" icon="search" />
@@ -14,7 +14,7 @@
     </form>
     <b-modal ref="my-modal-filter" size="sm" centered hide-footer hide-header header-close>
       <h2 class = "custom-font" style="margin-top:10px; margin-left:20px; font-size:24px;"><b>Filter By</b></h2>
-      <button  class="rectangle-filter custom-font">
+      <button class="rectangle-filter custom-font">
         <b style="float:left; font-size:16px;">Destination Name</b>
         <fa style="width: 20px; height: 20px; color:rgba(255, 107, 48, 1.0); float:right; display:inline;" icon="angle-right"/>
       </button>
@@ -42,7 +42,7 @@
     <br><br>
 
     <div v-for="info in filtered" v-bind:key="info.id">
-      <PartyCard :infoData="info"/>
+      <PartyCard :infoData="info" :userid="user._id"/>
     </div>
 
     <div style="height:130px"/>
@@ -64,23 +64,27 @@ export default {
   },
   data(){
     return {
+      user: '',
       infos: [
         {
           start       : 'KMUTT',
           destination : 'Central World',
           members     :[{
+            _id:'5ddea0b4ac1b0c16865ec256',
             name      : 'Kingkong Ka',
             photo     : 'https://i.ibb.co/jrqXVMc/34160175-1783875771674116-4549335273816719360-n.jpg',
             alt       : '34160175-1783875771674116-4549335273816719360-n',
             id        : 'name-1'
           },
           {
+            _id:'5ddea5ec256',
             name      : 'Kingkong Ka',
             photo     : 'https://i.ibb.co/5nz2dYW/34157788-1783875748340785-5412561363157385216-n.jpg',
             alt       : '34157788-1783875748340785-5412561363157385216-n',
             id        : 'name-2'
           },
           {
+            _id:'5ddea5ec256',
             name      : 'Kingkong Ka',
             photo     : 'https://i.ibb.co/1qbMRdL/34176279-1783875791674114-8162525134901477376-n.jpg',
             alt       : '34176279-1783875791674114-8162525134901477376-n',
@@ -94,6 +98,7 @@ export default {
           id          :'sample-info'
         },
         {
+          
           start       : 'KMUTT',
           destination : 'Central Rama II',
           members     :[{
@@ -103,6 +108,7 @@ export default {
             id        : 'name-1'
           },
           {
+            _id:'5ddea5ec256',
             name      : 'Kingkong Ka',
             photo     : 'https://i.ibb.co/5nz2dYW/34157788-1783875748340785-5412561363157385216-n.jpg',
             alt       : '34157788-1783875748340785-5412561363157385216-n',
@@ -125,12 +131,14 @@ export default {
             id        : 'name-1'
           },
           {
+            _id:'5ddea5ec256',
             name      : 'Kingkong Ka',
             photo     : 'https://i.ibb.co/5nz2dYW/34157788-1783875748340785-5412561363157385216-n.jpg',
             alt       : '34157788-1783875748340785-5412561363157385216-n',
             id        : 'name-2'
           },
           {
+            _id:'5ddea5ec256',
             name      : 'Kingkong Ka',
             photo     : 'https://i.ibb.co/1qbMRdL/34176279-1783875791674114-8162525134901477376-n.jpg',
             alt       : '34176279-1783875791674114-8162525134901477376-n',
@@ -153,6 +161,7 @@ export default {
             id        : 'name-1'
           },
           {
+            _id:'5ddea5ec256',
             name      : 'Kingkong Ka',
             photo     : 'https://i.ibb.co/5nz2dYW/34157788-1783875748340785-5412561363157385216-n.jpg',
             alt       : '34157788-1783875748340785-5412561363157385216-n',
@@ -172,9 +181,16 @@ export default {
     }
   },
   mounted() {
-    this.$axios.$get('http://taxzi.herokuapp.com/parties').then((res) => {
-      console.log(res)
-    })
+    // this.$axios.$get('http://taxzi.herokuapp.com/parties').then((res) => {
+    //   console.log(res)
+    // })
+    const user = this.$store.state.user
+    if(!user) {
+      this.$router.push('/user/login')
+    } else {
+      this.user = user
+      
+    }
   },
   methods: {
     showModal() {

@@ -1,5 +1,5 @@
 export const state = () => ({
-    user: null
+    user: { "_id": "5ddea0b4ac1b0c16865ec256", "gender": "Male", "kmutt_id": "60000000000", "name": "Chanchana Wicha", "registered": true, "username": "chanchana" }
 })
 
 export const mutations = {
