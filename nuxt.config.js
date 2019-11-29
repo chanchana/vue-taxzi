@@ -65,7 +65,7 @@ export default {
     ]
   },
   axios: {
-    baseUrl: 'https://taxzi.herokuapp.com',
+    baseUrl: 'http://taxzi.herokuapp.com',
     proxyHeaders: false,
     credentials: false,
   },
