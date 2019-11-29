@@ -8,7 +8,7 @@ export default {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'height=device-height, width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
@@ -40,9 +40,37 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     'bootstrap-vue/nuxt',
     'nuxt-webfontloader',
+    'nuxt-socket-io',
+    'nuxt-webfontloader',
+    ['nuxt-fontawesome', {
+      component: 'fa', 
+      imports: [
+        //import whole set
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['fas']
+        }
+      ]
+    }]
   ],
+  io: {
+    sockets: [
+      {
+        name: 'chat',
+        url: 'http://taxzi.herokuapp.com',
+        // url: 'localhost:9999/',
+        transports: ['websocket'],
+      },
+    ]
+  },
+  axios: {
+    baseUrl: 'https://taxzi.herokuapp.com',
+    proxyHeaders: false,
+    credentials: false,
+  },
   webfontloader: {
     google: {
       families: ['Nunito:400,700'] //Loads Lato font with weights 400 and 700
