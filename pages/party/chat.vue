@@ -1,10 +1,7 @@
 <template>
   <div class="bg">
-    <ChatNav />
+    <ChatNav from="KMUU" to="Mitr"/>
     <!-- <TypeBar /> -->
-    <!-- <b-form-input v-model="chatid" placeholder="CHATID"></b-form-input>
-    <b-form-input v-model="userid" placeholder="USERID"></b-form-input> -->
-
     <div class="message-area">
       <div v-for="c in chat">
         <ChatBubbleNone v-if="c.userid == ''" :message="c.message" />
