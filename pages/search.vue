@@ -1,9 +1,9 @@
 
 <template>
 
-  <div>
+  <div style="background-color:#F1F1F1">
     <!-- <b><h1><p class="taxzi-text-gradient" style="font-weight:700;width:none;min-width:none;"> Search</p></h1></b> -->
-    <div style="margin:30px 40px 20px 40px">
+    <div style="margin:0px 40px 20px 40px;padding:30px 0px 0px">
       <span class="taxzi-text-gradient" style="font-size:48px;font-weight:800;width:none;min-width:none;">Search</span>
     </div>
         
@@ -45,16 +45,22 @@
       <PartyCard :infoData="info"/>
     </div>
 
+    <div style="height:130px"/>
+
+    <NavBar active="search"/>
+
   </div>
 </template>
 
 <script>
 
 import PartyCard from "~/components/PartyCard.vue"
+import NavBar from "~/components/NavBar.vue"
 
 export default {
   components: {
     PartyCard,
+    NavBar,
   },
   data(){
     return {
@@ -192,7 +198,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Nunito:800,400,700,900');
   body{
-    background-color  : #F1F1F1;
+    /* background-color  : #F1F1F1; */
     /* font-family       : "Nunito", Helvetica, Arial, serif; */
   }
 
