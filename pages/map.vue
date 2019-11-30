@@ -52,10 +52,10 @@
       
       <div class="member-dialog">
         <br>
-        <input type="text" id="from" name="from" placeholder="From"  class="rectangle-map">
-        <input type="text" id="to" name="to" placeholder="To" class="rectangle-map">
+        <input type="text" v-model="form.from" id="from" name="from" placeholder="From"  class="rectangle-map">
+        <input type="text" v-model="form.to" id="to" name="to" placeholder="To" class="rectangle-map">
         <br><br>
-        <b-button @click="$router.push('/create')" class="rectangle-done custom-font" block ><b style="font-size:24px; color:white;">Next</b></b-button>
+        <b-button @click="tapNext" class="rectangle-done custom-font" block ><b style="font-size:24px; color:white;">Next</b></b-button>
       </div>
     </GMap>
     
@@ -68,6 +68,10 @@ export default {
   name: 'google-map',
   data() {
     return {
+      form: {
+        from: '',
+        to: '',
+      },
       currentLocation: {},
       locationsVisibleOnMap: "",
       start: "",
@@ -123,6 +127,10 @@ export default {
     },
     route() {
       this.$refs.gMap.map.route(this.location[0], this.location[1]);
+    },
+    tapNext() {
+      this.$store.commit('setplace', this.form)
+      this.$router.push('/create')
     }
   }
 };

@@ -66,12 +66,12 @@ export default {
   methods: {
     tapNext() {
       this.isLoading = true
-      this.$axios.$post('http://taxzi.herokuapp.com/register', {
+      this.$axios.$post('https://taxzi.herokuapp.com/register', {
         username: this.form.username,
         password: this.form.password,
       }).then(res => {
         if(!res.status) {
-          this.$axios.$post('http://taxzi.herokuapp.com/login', {
+          this.$axios.$post('https://taxzi.herokuapp.com/login', {
           username: this.form.username,
           password: this.form.password,
           }).then(res => {

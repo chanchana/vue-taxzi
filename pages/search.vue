@@ -78,7 +78,7 @@ export default {
       this.user = user
     }
 
-    this.$axios.$get('http://taxzi.herokuapp.com/parties').then((res) => {
+    this.$axios.$get('https://taxzi.herokuapp.com/parties').then((res) => {
       if (!res.status) {
         alert(res.error)
       } else {

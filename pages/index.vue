@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div>
-      <logo />
+      <!-- <logo /> -->
       <h1 class="title">
-        vue-taxzi
+        Taxzi
       </h1>
       <h2 class="subtitle">
-        My finest Nuxt.js project
+        <!-- My finest Nuxt.js project -->
       </h2>
-      <div class="links">
+      <!-- <div class="links">
         <a
           href="https://nuxtjs.org/"
           target="_blank"
@@ -23,7 +23,7 @@
         >
           GitHub
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -32,6 +32,9 @@
 import Logo from '~/components/Logo.vue'
 
 export default {
+  mounted() {
+    this.$router.push('/user/login')
+  },
   components: {
     Logo
   }

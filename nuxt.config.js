@@ -72,14 +72,14 @@ export default {
     sockets: [
       {
         name: 'chat',
-        url: 'http://taxzi.herokuapp.com',
+        url: 'https://taxzi.herokuapp.com',
         // url: 'http://localhost:9999/',
         transports: ['websocket'],
       },
     ]
   },
   axios: {
-    baseUrl: 'http://taxzi.herokuapp.com',
+    baseUrl: 'https://taxzi.herokuapp.com',
     proxyHeaders: false,
     credentials: false,
   },

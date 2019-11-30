@@ -68,7 +68,7 @@ export default {
   methods: {
     tapLogin() {
       this.isLoading = true
-      this.$axios.$post('http://taxzi.herokuapp.com/login', {
+      this.$axios.$post('https://taxzi.herokuapp.com/login', {
           username: this.form.username,
           password: this.form.password,
       }).then(res => {

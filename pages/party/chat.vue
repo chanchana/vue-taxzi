@@ -72,7 +72,7 @@ export default {
 
     this.isLoading = true
 
-    this.$axios.$get(`http://taxzi.herokuapp.com/parties/${party._id}/chat`).then(res => {
+    this.$axios.$get(`https://taxzi.herokuapp.com/parties/${party._id}/chat`).then(res => {
       if(!res.status) {
         this.isLoading = false
         alert(res.error)
@@ -103,7 +103,7 @@ export default {
           })
         })
     
-        this.$axios.$get('http://taxzi.herokuapp.com/chats/' + chatid).then(response => {
+        this.$axios.$get('https://taxzi.herokuapp.com/chats/' + chatid).then(response => {
             // console.log(response.data)
             this.isLoading = false
             this.chatData = response.data

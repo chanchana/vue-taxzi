@@ -52,7 +52,7 @@ export default {
 
     this.userid = user._id
 
-    this.$axios.$get(`http://taxzi.herokuapp.com/users/${this.userid}/activeparty`).then( res => {
+    this.$axios.$get(`https://taxzi.herokuapp.com/users/${this.userid}/activeparty`).then( res => {
       if (!res.status) {
         alert(res.error)
       } else {

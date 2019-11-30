@@ -90,7 +90,12 @@ export default {
   mounted() {
     this.$bvModal.hide('success-modal')
     const user = this.$store.state.user
+    const place = this.$store.state.place
     if(!user) {this.$router.push('/user/login')}
+    if(place) {
+      this.form.from = place.from
+      this.form.to = place.to
+    }
     this.user = user
   },
   methods: {
@@ -103,7 +108,7 @@ export default {
       if(this.form.max < 2) {this.form.max = 2}
     },
     tapDone() {
-      this.$axios.$post(`http://taxzi.herokuapp.com/users/${this.user._id}/createparty`, this.form).then(res => {
+      this.$axios.$post(`https://taxzi.herokuapp.com/users/${this.user._id}/createparty`, this.form).then(res => {
         if(!res.status) {
           alert(res.error)
         } else {

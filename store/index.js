@@ -1,6 +1,7 @@
 export const state = () => ({
     user:null,
     party:null,
+    place: null,
     // user: {
     //     "_id": "5ddea0b4ac1b0c16865ec256",
     //     "gender": "Male",
@@ -51,4 +52,7 @@ export const mutations = {
     clearparty(state) {
         state.party = null
     },
+    setplace(state, place) {
+        state.place = place
+    }
 }

@@ -161,7 +161,7 @@ export default {
       const partyid = this.infoData._id;
 
       this.$axios
-        .$post(`http://taxzi.herokuapp.com/users/${userid}/joinparty/${partyid}`)
+        .$post(`https://taxzi.herokuapp.com/users/${userid}/joinparty/${partyid}`)
         .then(res => {
           if (!res.status) {
             alert(res.error)
