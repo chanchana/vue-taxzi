@@ -161,7 +161,7 @@ export default {
       const partyid = this.infoData._id;
 
       this.$axios
-        .$post(`http://localhost:9999/users/${userid}/joinparty/${partyid}`)
+        .$post(`http://taxzi.herokuapp.com/users/${userid}/joinparty/${partyid}`)
         .then(res => {
           if (!res.status) {
             alert(res.error)
@@ -192,4 +192,141 @@ export default {
   font-size: 24px;
   cursor: pointer;
 }
+
+
+  #rcorners1 {
+    font-color        : rgba(129, 129, 129, 1.0);
+    font-size         : 14px;
+    margin-top        : 0px;
+    margin-right      : 40px;
+    margin-left       : 40px;
+    border-radius     : 70px;
+    border            : 0px;
+    background        : rgba(228, 228, 228, 1.0);
+    padding           : 25px; 
+    width             : 285px;
+    height            : 10px;    
+  }
+
+  .iconfilter {
+  background-color    : rgba(255,255,255,0.0);
+  color               : rgba(255, 107, 48, 1.0);
+  top                 : 156px;
+  height              : 20px;
+  width               : 20px;
+  position            : absolute;
+  margin              : 50px;
+  left                : 225px;
+  -ms-transform       : rotate(0deg); /* IE 9 */
+  -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
+  transform           : rotate(0deg);
+  }
+.iconsearch{
+  background-color    : rgba(255,255,255,0.0);
+  top                 : 135px;
+  height              : 23px;
+  width               : 23px;
+  position            : absolute;
+  margin              : 0;
+  left                : 288px;
+  -ms-transform       : rotate(0deg); /* IE 9 */
+  -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
+  transform           : rotate(0deg);
+  }
+.rectangle{
+  width               : 300px;
+  padding             : 13px;
+  background          : #FAFAFA;
+  border-radius       : 20px;
+  border              : 10px;
+  margin-top          : 15px;
+  margin-right        : 30px;
+  margin-left         : 30px;
+  box-shadow: 5px 5px 15px 5px rgba(228, 228, 228, 1.0);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.rectangle:hover {background-color: #e7e7e7;}
+
+.rectangle-member{
+  width               : 215px;
+  padding             : 13px;
+  background          : #FAFAFA;
+  border-radius       : 20px;
+  border              : 10px;
+  margin-top          : 0px;
+  margin-right        : 30px;
+  margin-left         : 30px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.rectangle-member:hover {background-color: #e7e7e7;}
+
+.rectangle-join{
+  width               : 140px;
+  padding             : 5px;
+  background          : rgba(255, 107, 48, 0.9);
+  border-radius       : 60px;
+  border              : 10px;
+  float               : left;    
+  margin-top          : 0px;
+  margin-bottom       : 10px;
+  margin-right        : 10px;
+  margin-left         : 10px;
+  box-shadow: 5px 5px 30px 1px rgba(255, 107, 48, 0.7);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.rectangle-join:hover {background-color: rgba(255, 107, 48, 1.0);}
+
+.rectangle-each-member{
+  width               : 310px;
+  padding             : 13px;
+  background          : #FAFAFA;
+  border-radius       : 20px;
+  border              : 10px;
+  margin-top          : 15px;
+  margin-right        : 30px;
+  margin-left         : 33px;
+  box-shadow: 5px 5px 30px 1px rgb(0, 0, 0,0.1);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.rectangle-each-member:hover {background-color: rgba(255, 107, 48, 0.9);}
+
+.rectangle-filter{
+  width               : 250px;
+  padding             : 13px;
+  background          : #FAFAFA;
+  border-radius       : 20px;
+  border              : 10px;
+  margin-top          : 15px;
+  margin-right        : 20px;
+  margin-left         : 14px;
+  box-shadow: 5px 5px 30px 1px rgb(0, 0, 0,0.1);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.rectangle-filter:hover {background-color: rgba(255, 107, 48, 0.9);}
+
+.rectangle-done{
+  width               : 130px;
+  padding             : 5px;
+  background          : rgba(255, 107, 48, 0.9);
+  border-radius       : 60px;
+  border              : 10px;
+  float               : left;    
+  margin-top          : 0px;
+  margin-bottom       : 10px;
+  margin-right        : 50px;
+  margin-left         : 75px;
+  box-shadow: 5px 5px 30px 1px rgba(255, 107, 48, 0.7);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.rectangle-done:hover {background-color: rgba(255, 107, 48, 1.0);}
+
+
 </style>

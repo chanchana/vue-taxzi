@@ -22,6 +22,9 @@
     <!-- Content -->
     <div class="content">
       <h4><b>My Party</b></h4>
+      <div v-for="party in parties" style="margin-left:-30px">
+        <PartyCard :infoData="party" :userid="userid"/>
+      </div>
     </div>
     <NavBar active="home"/>
   </div>
@@ -29,10 +32,34 @@
 
 <script>
 import NavBar from "~/components/NavBar.vue"
+import PartyCard from "~/components/PartyCard.vue"
 
 export default {
   components: {
     NavBar,
+    PartyCard,
+  },
+  data() {
+    return {
+      parties: [],
+      userid: '',
+    }
+  },
+  mounted() {
+    const user = this.$store.state.user
+
+    if(!user) {this.$router.push('/user/login')}
+
+    this.userid = user._id
+
+    this.$axios.$get(`http://taxzi.herokuapp.com/users/${this.userid}/activeparty`).then( res => {
+      if (!res.status) {
+        alert(res.error)
+      } else {
+        this.parties = res.data
+      }
+    })
+    
   }
 }
 </script>
