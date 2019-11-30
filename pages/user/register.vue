@@ -5,7 +5,7 @@
     <img src="~/static/TaxziLogoGradient.png" style="height:80px">
     <div
       style="padding:64px 38px 10px;font-size:14px;text-align:left"
-    >Please enter a valid KMUTT student or staff username (ID) and password</div>
+    >Please enter a valid KMUTT student or staff username (ID, Email) and password</div>
     <div class="d-flex justify-content-center">
       <form class="form-horizontal" action method>
         <!-- Username -->

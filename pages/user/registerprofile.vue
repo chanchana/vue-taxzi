@@ -54,7 +54,7 @@ export default {
 .header-footer {
   margin: -20px 0px;
   border-radius: 20px 20px 0px 0px;
-  background-color: white;
+  background-color: #F1F1F1;
   height: 20px;
   z-index: 2;
   -webkit-box-shadow: 0px 11px 143px -20px rgba(0,0,0,0.7);
