@@ -1,10 +1,10 @@
 
 <template>
 
-  <div style="background-color:#F1F1F1">
+  <div style="background-color:#F1F1F1;text-align:center;">
     <!-- <b><h1><p class="taxzi-text-gradient" style="font-weight:700;width:none;min-width:none;"> Search</p></h1></b> -->
-    <div style="margin:0px 40px 20px 40px;padding:30px 0px 0px">
-      <span class="taxzi-text-gradient" style="font-size:48px;font-weight:800;width:none;min-width:none;">Search</span>
+    <div style="margin:0px 40px 20px 40px;padding:30px 0px 0px;text-align:left;">
+      <span class="taxzi-text-gradient" style="font-size:48px;font-weight:700;width:none;min-width:none;">Search</span>
     </div>
         <!-- {{user}} -->
     <form>
@@ -212,7 +212,6 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Nunito:800,400,700,900');
   body{
     /* background-color  : #F1F1F1; */
     /* font-family       : "Nunito", Helvetica, Arial, serif; */
@@ -259,7 +258,7 @@ export default {
   transform           : rotate(0deg);
   }
 .rectangle{
-  width               : 320px;
+  width               : 300px;
   padding             : 13px;
   background          : #FAFAFA;
   border-radius       : 20px;

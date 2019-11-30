@@ -44,6 +44,7 @@
 }
 .taxzi-button:hover {background-color: rgba(255, 107, 48, 1.0);}
 html {
+  background-color: #F1F1F1;
   font-family: 'Nunito', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
@@ -53,6 +54,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+body {
+  background-color: #F1F1F1;
 }
 
 *,

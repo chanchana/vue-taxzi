@@ -51,12 +51,12 @@
         </div>
 
         <b-modal id="success-modal" centered hide-header hide-footer no-close-on-backdrop>
-          <div style="padding:24px" class="custom-font">
-            <h1><b>Success!</b></h1>
-            <p>
+          <div style="padding:24px;text-align:center;" class="custom-font">
+            <h1 style="text-align:left;"><b>Success!</b></h1>
+            <p style="text-align:left;">
               Your new party has been created. You can access your party from your home page.
             </p>
-            <button class="taxzi-button" @click="$router.push('/home')">
+            <button class="taxzi-button" style="width:70%" @click="$router.push('/home')">
               Home
             </button>
           </div>

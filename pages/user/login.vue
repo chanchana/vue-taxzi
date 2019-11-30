@@ -89,7 +89,7 @@ export default {
 
 <style scoped>
 .bg {
-  background-color: whitesmoke;
+  background-color: #F1F1F1;
   padding: 0%;
   min-height: 100%;
   height: 100%;
