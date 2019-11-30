@@ -16,8 +16,8 @@
         <b-col cols="1" style="padding:5px 0px 0px 15px"><fa icon="plus"></fa></b-col>
         <b-col>
           <b-input-group>
-            <b-form-input class="taxzi-form" v-model="message" placeholder="Message..."></b-form-input>
-            <b-input-group-append style="background-color:rgb(223, 223, 223);border-radius:0px 999px 999px 0px;">
+            <b-form-input class="taxzi-form" style="height:40px" v-model="message" placeholder="Message..."></b-form-input>
+            <b-input-group-append style="height:40px;background-color:rgb(223, 223, 223);border-radius:0px 999px 999px 0px;">
               <b-button class="taxzi-form-button" variant="link" @click="sendMessage"><fa icon="paper-plane"></fa></b-button>
             </b-input-group-append>
           </b-input-group>
@@ -121,11 +121,12 @@ export default {
   color: black;
 }
 .taxzi-form-button {
-  background-color: none;
+  background-color: rgb(223, 223, 223);
   border: none;
   border-radius: 999px;
   font-size: 18px;
   color: rgb(255, 145, 0);
+  padding: 10px;
 }
 .bg {
   background-color: whitesmoke;

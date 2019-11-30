@@ -28,9 +28,8 @@ export default {
   text-align: right;
 }
 .bubble {
-  color: black;
-  
-  background-color: white;
+  color: white;
+  background-color: cornflowerblue;
   border-radius: 10px;
   padding: 8px;
   width: unset;

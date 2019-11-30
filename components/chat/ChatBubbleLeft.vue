@@ -27,8 +27,8 @@ export default {
   color:gray;
 }
 .bubble {
-  color: white;
-  background-color: cornflowerblue;
+  color: black;
+  background-color: white;
   border-radius: 10px;
   padding: 8px;
   width: unset;
