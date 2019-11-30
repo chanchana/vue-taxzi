@@ -22,7 +22,7 @@
           </b-row>
           <br>
           <b-row>
-            &nbsp;&nbsp;&nbsp;&nbsp;<b-col style="font-size:11px; float:left>">Currently Active</b-col>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b-col style="font-size:11px; float:left>">Currently Active {{$store.state}}</b-col>
           </b-row>
           <b-row>
             <PartyMember :memberInfo="infoData.members" :numberMember="infoData.members.length" :numberMax="infoData.max" />
@@ -31,8 +31,8 @@
       </div>
       <br>
       <!-- {{isJoined}}, {{userid}}, {{infoData.members}} -->
-      <b-button v-if="isJoined" class="rectangle-join custom-font" block @click="hideModal"><b style="font-size:28px; color:white;"><fa icon="chat" style="font-size:16px; color:white; padding:0px 0px 2px 0px;"/> Chat</b></b-button>
-      <b-button v-if="!isJoined" class="rectangle-join custom-font" block @click="hideModal"><b style="font-size:28px; color:white;"><fa icon="user-plus" style="font-size:16px; color:white; padding:0px 0px 2px 0px;"/> Join</b></b-button>
+      <b-button v-if="isJoined" class="rectangle-join custom-font" block @click="$router.push('/party/chat')"><b style="font-size:28px; color:white;"><fa icon="comment-alt" style="font-size:20px; color:white; padding:0px 0px 2px 0px;"/> Chat</b></b-button>
+      <b-button v-if="!isJoined" class="rectangle-join custom-font" block @click="tapJoin"><b style="font-size:28px; color:white;"><fa icon="user-plus" style="font-size:20px; color:white; padding:0px 0px 2px 0px;"/> Join</b></b-button>
 
     </b-modal>
     <button @click="showModal" class="rectangle">
@@ -84,10 +84,15 @@ export default {
   },
   methods: {
     showModal() {
+      this.$store.commit('setparty', this.infoData)
       this.$refs["my-modal"].show();
     },
     hideModal() {
+      this.$store.commit('clearparty')
       this.$refs["my-modal"].hide();
+    },
+    tapJoin() {
+
     }
   }
 };
