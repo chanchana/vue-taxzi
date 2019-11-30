@@ -1,7 +1,17 @@
 <template>
   <div>
-    <h1>Create Party</h1>
-    <div class="flex">
+    <div class="content">
+        <b-row>
+          <b-col cols="2">
+            <fa @click="$router.push('/home')" style="margin:14px 0px 0px;color:blue;font-size:20px" icon="chevron-left" />
+          </b-col>
+          <b-col cols="8" style="text-align:center;">
+            <span class="taxzi-text-gradient title">Create</span>
+          </b-col>
+          <b-col cols="2"></b-col>
+        </b-row>
+    </div>
+    <!-- <div class="flex">
       <button @click="returnToCenter()" class="button">Return to center</button>
       <p class="visibleCities">
         Visible cities: {{ locations }}
@@ -10,13 +20,14 @@
         />
       </p>
       <button type="button" v-on:click="route()">Route</button>
-    </div>
+    </div> -->
     <GMap
       ref="gMap"
       :cluster="{options: {styles: clusterStyle}}"
       :center="{lat: locations[0].lat, lng: locations[0].lng}"
       :options="{fullscreenControl: false, streetViewControl: false, mapTypeControl: false, zoomControl: true, gestureHandling: 'cooperative', styles: mapStyle}"
-      :zoom="6"
+      :zoom="10"
+      
       @bounds_changed="checkForMarkers"
     >
       <GMapMarker
@@ -24,8 +35,9 @@
         :key="location.id"
         :position="{lat: location.lat, lng: location.lng}"
         :options="{icon: location === currentLocation ? pins.selected : pins.notSelected}"
-        :zoom="10"
+        :zoom="11"
         @click="currentLocation = location"
+        style="color:red;"
       >
         <GMapInfoWindow>
           <b>{{ location.name }}</b>
@@ -37,11 +49,27 @@
           </code>
         </GMapInfoWindow>
       </GMapMarker>
+      <div  style="position: fixed; bottom:0px; left:0px; z-index:9; width:100%; height:100%; background-color:rgba(0,0,0,0);"/>
+      <div class="member-dialog">
+        <br>
+        <button  class="rectangle-map">
+          <b style="float:left; color:gray;">From</b>
+          <fa style="width: 20px; height: 20px; color:rgba(255, 107, 48, 1.0); float:right; display:inline;" icon="angle-right"/>
+        </button>
+        <button  class="rectangle-map">
+          <b style="float:left; color:gray;">To</b>
+          <fa style="width: 20px; height: 20px; color:rgba(255, 107, 48, 1.0); float:right; display:inline;" icon="angle-right"/>
+        </button>
+        <br><br>
+        <b-button class="rectangle-done custom-font" block @click="hideModal"><b style="font-size:24px; color:white;">Next</b></b-button>
+      </div>
     </GMap>
+    
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'google-map',
   data() {
@@ -166,10 +194,69 @@ export default {
 //     background-color: #12957b;
 //   }
 // }
-.google-map {
-  width: 800px;
-  height: 600px;
-  margin: 0 auto;
-  background: gray;
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map{
+    height: 100%;
+  }
+      /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .content {
+  padding: 20px 20px 20px 20px;
+  }
+  .title {
+  font-size: 30px;
+  font-weight: 700;
+  }
+  .member-dialog {
+      position: fixed;
+      height: 275px;
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+      background-color: white;
+      z-index: 10;
+      border-radius: 40px 40px 0px 0px;
+    }
+  .google-map {
+    width: 100%; 
+    height: 100%;
+    position: absolute; 
+    left:0; 
+    top:0;
+  }
+  .rectangle-map{
+  width               : 300px;
+  padding             : 15px;
+  background          : #FAFAFA;
+  border-radius       : 20px;
+  border              : 10px;
+  margin-top          : 15px;
+  margin-right        : 30px;
+  margin-left         : 35px;
+  box-shadow: 5px 5px 30px 1px rgb(0, 0, 0,0.1);
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
+
+.rectangle-done{
+  width               :300px;
+  padding             : 10px;
+  background          : rgba(255, 107, 48, 0.9);
+  border-radius       : 60px;
+  border              : 10px;
+  float               : left;    
+  margin-top          : 0px;
+  margin-bottom       : 10px;
+  margin-right        : 50px;
+  margin-left         : 35px;
+  box-shadow: 5px 5px 30px 1px rgba(255, 107, 48, 0.7);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.rectangle-done:hover {background-color: rgba(255, 107, 48, 1.0);}
 </style>
