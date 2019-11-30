@@ -1,4 +1,10 @@
 
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/<repository-name>/'
+  }
+} : {}
+
 export default {
   mode: 'universal',
   /*
@@ -76,6 +82,7 @@ export default {
       families: ['Nunito:400,700'] //Loads Lato font with weights 400 and 700
     }
   },
+  routerBase,
   /*
   ** Build configuration
   */
