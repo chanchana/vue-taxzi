@@ -65,132 +65,26 @@ export default {
   data(){
     return {
       user: '',
-      infos: [
-        {
-          start       : 'KMUTT',
-          destination : 'Central World',
-          members     :[{
-            _id:'5ddea0b4ac1b0c16865ec256',
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/jrqXVMc/34160175-1783875771674116-4549335273816719360-n.jpg',
-            alt       : '34160175-1783875771674116-4549335273816719360-n',
-            id        : 'name-1'
-          },
-          {
-            _id:'5ddea5ec256',
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/5nz2dYW/34157788-1783875748340785-5412561363157385216-n.jpg',
-            alt       : '34157788-1783875748340785-5412561363157385216-n',
-            id        : 'name-2'
-          },
-          {
-            _id:'5ddea5ec256',
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/1qbMRdL/34176279-1783875791674114-8162525134901477376-n.jpg',
-            alt       : '34176279-1783875791674114-8162525134901477376-n',
-            id        : 'name-3'
-          }],
-          max         :4,
-          date        :'Today',
-          time        :'18:00',
-          lady        : true,
-          service     :'GRAB',
-          id          :'sample-info'
-        },
-        {
-          
-          start       : 'KMUTT',
-          destination : 'Central Rama II',
-          members     :[{
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/jrqXVMc/34160175-1783875771674116-4549335273816719360-n.jpg',
-            alt       : '34160175-1783875771674116-4549335273816719360-n',
-            id        : 'name-1'
-          },
-          {
-            _id:'5ddea5ec256',
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/5nz2dYW/34157788-1783875748340785-5412561363157385216-n.jpg',
-            alt       : '34157788-1783875748340785-5412561363157385216-n',
-            id        : 'name-2'
-          }],
-          max         :4,
-          date        :'Today',
-          time        :'19:00',
-          lady        : false,
-          service     :'LINEMAN',
-          id          :'sample-info-2'
-        },
-        {
-          start       : 'KMUTT',
-          destination : 'Siam Paragon',
-          members     :[{
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/jrqXVMc/34160175-1783875771674116-4549335273816719360-n.jpg',
-            alt       : '34160175-1783875771674116-4549335273816719360-n',
-            id        : 'name-1'
-          },
-          {
-            _id:'5ddea5ec256',
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/5nz2dYW/34157788-1783875748340785-5412561363157385216-n.jpg',
-            alt       : '34157788-1783875748340785-5412561363157385216-n',
-            id        : 'name-2'
-          },
-          {
-            _id:'5ddea5ec256',
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/1qbMRdL/34176279-1783875791674114-8162525134901477376-n.jpg',
-            alt       : '34176279-1783875791674114-8162525134901477376-n',
-            id        : 'name-3'
-          }],
-          max         :4,
-          date        :'Today',
-          time        :'19:00',
-          lady        : false,
-          service     :'None',
-          id          :'sample-info-0'
-        },
-        {
-          start       : 'KMUTT',
-          destination : 'ไปบ้านมึงอะ',
-          members     :[{
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/jrqXVMc/34160175-1783875771674116-4549335273816719360-n.jpg',
-            alt       : '34160175-1783875771674116-4549335273816719360-n',
-            id        : 'name-1'
-          },
-          {
-            _id:'5ddea5ec256',
-            name      : 'Kingkong Ka',
-            photo     : 'https://i.ibb.co/5nz2dYW/34157788-1783875748340785-5412561363157385216-n.jpg',
-            alt       : '34157788-1783875748340785-5412561363157385216-n',
-            id        : 'name-2'
-          }],
-          max         :4,
-          date        :'Today',
-          time        :'00:00',
-          lady        : true,
-          service     :'GRAB',
-
-          id          :'sample-info-4'
-        }
-      ],
+      infos: [],
       search:'',
       status: 'not_accepted',
     }
   },
   mounted() {
-    // this.$axios.$get('http://taxzi.herokuapp.com/parties').then((res) => {
-    //   console.log(res)
-    // })
     const user = this.$store.state.user
     if(!user) {
       this.$router.push('/user/login')
     } else {
       this.user = user
-      
     }
+
+    this.$axios.$get('http://taxzi.herokuapp.com/parties').then((res) => {
+      if (!res.status) {
+        alert(res.error)
+      } else {
+        this.infos = res.data
+      }
+    })
   },
   methods: {
     showModal() {
@@ -203,7 +97,7 @@ export default {
   computed:{
     filtered(){
       return this.infos.filter((info) => {
-        return info.destination.toLowerCase().match(this.search.toLowerCase())|| info.start.toLowerCase().match(this.search.toLowerCase())
+        return info.to.toLowerCase().match(this.search.toLowerCase())|| info.from.toLowerCase().match(this.search.toLowerCase())
       })
     }
   }

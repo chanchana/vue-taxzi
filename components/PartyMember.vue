@@ -13,7 +13,7 @@
                 <div v-for="member in memberInfo" v-bind:key="member.id">
                     <button  class="rectangle-each-member">
                         <fa style="float:left; font-size:28;" icon="user-circle"/>
-                        <b style="margin-right:100px;">{{member.name}}</b>
+                        <b style="margin-right:0px;">&nbsp; {{member.name}}</b>
                         <fa style="width: 20px; height: 20px; color:rgba(255, 107, 48, 1.0); float:right; display:inline;" icon="angle-right"/>
                     </button>
                 </div>
@@ -48,6 +48,8 @@ export default {
         background-color: #F1F1F1;
         z-index: 10;
         border-radius: 40px 40px 0px 0px;
+        overflow: scroll;
+        padding-bottom: 30px;
     }
     .btn {
     background-color:  #F1F1F1;
