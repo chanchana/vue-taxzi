@@ -2,14 +2,13 @@
   <div>
     <h1>Create Party</h1>
     <div class="flex">
-      <button @click="returnToCenter()" class="button">Return to center</button>
+      <!-- <button @click="returnToCenter()" class="button">Return to center</button> -->
       <p class="visibleCities">
-        Visible cities: {{ locations }}
+        Destination:
         <span
           v-text="locationsVisibleOnMap"
         />
       </p>
-      <button type="button" v-on:click="route()">Route</button>
     </div>
     <GMap
       ref="gMap"
@@ -52,8 +51,8 @@ export default {
       finish: "",
       locations: [
         {
-          lat: 13.577478,
-          lng: 100.441308,
+          lat: 13.6510,
+          lng: 100.4954,
           name: "KMUTT"
         },
         {
@@ -84,7 +83,7 @@ export default {
 
   methods: {
     returnToCenter() {
-      this.$refs.gMap.map.setCenter(this.locations[0]);
+      this.$refs.gMap.map.setCenter(this.locations[1]);
     },
 
     checkForMarkers() {
