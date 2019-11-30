@@ -50,7 +50,7 @@ export default {
           id: "create",
           name: "Create",
           icon: "plus",
-          link:'/create',
+          link:'/map',
         },
         {
           id: "profile",

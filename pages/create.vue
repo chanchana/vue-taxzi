@@ -5,7 +5,7 @@
       <div class="content">
         <b-row>
           <b-col cols="2">
-            <fa @click="$router.push('/home')" style="margin:14px 0px 0px;color:blue;font-size:20px" icon="chevron-left" />
+            <fa @click="$router.push('/map')" style="margin:14px 0px 0px;color:blue;font-size:20px" icon="chevron-left" />
           </b-col>
           <b-col cols="8" style="text-align:center;">
             <span class="taxzi-text-gradient title">Create</span>
@@ -78,9 +78,9 @@ export default {
     return {
       isForm: true,
       form: {
-        from: 'KMUTT',
-        to: 'Mitr',
-        appointment: '2020-02-02T00:03',
+        from: '',
+        to: '',
+        appointment: '',
         max: 4,
         service: 'None',
       },

@@ -55,7 +55,7 @@
         <input type="text" id="from" name="from" placeholder="From"  class="rectangle-map">
         <input type="text" id="to" name="to" placeholder="To" class="rectangle-map">
         <br><br>
-        <b-button class="rectangle-done custom-font" block @click="hideModal"><b style="font-size:24px; color:white;">Next</b></b-button>
+        <b-button @click="$router.push('/create')" class="rectangle-done custom-font" block ><b style="font-size:24px; color:white;">Next</b></b-button>
       </div>
     </GMap>
     
