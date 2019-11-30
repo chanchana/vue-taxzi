@@ -61,7 +61,7 @@ export default {
       {
         name: 'chat',
         url: 'http://taxzi.herokuapp.com',
-        // url: 'localhost:9999/',
+        // url: 'http://localhost:9999/',
         transports: ['websocket'],
       },
     ]

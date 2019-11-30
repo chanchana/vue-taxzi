@@ -54,8 +54,8 @@ export default {
       message: "",
       navFrom: '',
       navTo: '',
-      chatid: "5dde529b3dc19a0c80455a95",
-      userid: "5ddd6af91a14aec5d2ea1ec6"
+      chatid: '',
+      userid: ''
     };
   },
   mounted() {
@@ -68,6 +68,7 @@ export default {
     if(!party) {this.$router.push('/home')}
     this.navFrom = party.from
     this.navTo = party.to
+    this.userid = user._id
 
     this.isLoading = true
 
@@ -78,6 +79,7 @@ export default {
         this.$router.push('/home')
       } else {
         const chatid = res.data._id
+        this.chatid = chatid
 
         this.socket = this.$nuxtSocket({
           name: "chat",
@@ -89,7 +91,11 @@ export default {
           // connected
           this.socket.on("chat-response", msg => {
             console.log(msg)
-            this.addMessage(msg)
+            console.log(this.chatid)
+            if(msg.chatid == this.chatid) {
+              console.log('ADDDDD')
+              this.addMessage(msg)
+            }
           })
           this.socket.on("chat-error", msg => {
             console.log(msg)
