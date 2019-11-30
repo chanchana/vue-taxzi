@@ -1,6 +1,8 @@
 <template>
   <div class="bg">
-    <ChatNav from="KMUU" to="Mitr"/>
+    <Loading v-if="isLoading" />
+    <ChatNav :from="navFrom" :to="navTo"/>
+    <!-- {{$store.state}} -->
     <!-- <TypeBar /> -->
     <div class="message-area">
       <div v-for="c in chat">
@@ -33,54 +35,82 @@ import TypeBar from "~/components/chat/TypeBar.vue";
 import ChatBubbleLeft from "~/components/chat/ChatBubbleLeft.vue";
 import ChatBubbleRight from "~/components/chat/ChatBubbleRight.vue";
 import ChatBubbleNone from "~/components/chat/ChatBubbleNone.vue";
+import Loading from "~/components/Loading.vue"
 
 export default {
   components: {
     ChatNav,
-    // TypeBar,
+    Loading,
     ChatBubbleLeft,
     ChatBubbleRight,
     ChatBubbleNone,
   },
   data() {
     return {
+      isLoading: false,
       chatData: {},
       chat: [{userid:'', message:''}, {userid:'', message:''}, {userid:'', message:''}],
       name: "",
       message: "",
+      navFrom: '',
+      navTo: '',
       chatid: "5dde529b3dc19a0c80455a95",
       userid: "5ddd6af91a14aec5d2ea1ec6"
     };
   },
   mounted() {
-    this.socket = this.$nuxtSocket({
-      name: "chat",
-      reconnection: true,
-      transports: ['websocket'],
-    });
+    this.isLoading = true
+    const party = this.$store.state.party
+    const user = this.$store.state.user
 
-    this.socket.on("connect", () => {
-      // connected
-      this.socket.on("chat-response", msg => {
-        console.log(msg)
-        this.addMessage(msg)
-      })
-      this.socket.on("chat-error", msg => {
-        console.log(msg)
-        alert(msg.message)
-      })
+    this.isLoading = false
+    if(!user) {this.$router.push('/user/login')}
+    if(!party) {this.$router.push('/home')}
+    this.navFrom = party.from
+    this.navTo = party.to
+
+    this.isLoading = true
+
+    this.$axios.$get(`http://taxzi.herokuapp.com/parties/${party._id}/chat`).then(res => {
+      if(!res.status) {
+        this.isLoading = false
+        alert(res.error)
+        this.$router.push('/home')
+      } else {
+        const chatid = res.data._id
+
+        this.socket = this.$nuxtSocket({
+          name: "chat",
+          reconnection: true,
+          transports: ['websocket'],
+        });
+    
+        this.socket.on("connect", () => {
+          // connected
+          this.socket.on("chat-response", msg => {
+            console.log(msg)
+            this.addMessage(msg)
+          })
+          this.socket.on("chat-error", msg => {
+            console.log(msg)
+            alert(msg.message)
+          })
+        })
+    
+        this.$axios.$get('http://taxzi.herokuapp.com/chats/' + chatid).then(response => {
+            // console.log(response.data)
+            this.isLoading = false
+            this.chatData = response.data
+            const messages = response.data.messages
+            var i
+            for(i=0; i<messages.length; i++) {
+              // console.log(messages[i])
+              this.addMessage(messages[i])
+            }
+          })
+      }
     })
 
-    this.$axios.$get('http://taxzi.herokuapp.com/chats/' + this.chatid).then(response => {
-        // console.log(response.data)
-        this.chatData = response.data
-        const messages = response.data.messages
-        var i
-        for(i=0; i<messages.length; i++) {
-          // console.log(messages[i])
-          this.addMessage(messages[i])
-        }
-      })
   },
   methods: {
     sendMessage() {

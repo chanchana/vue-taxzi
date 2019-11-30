@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <b-row>
-      <b-col cols="2" style="padding:20px 20px 20px 20px;font-size:20px;"><fa icon="chevron-left"/></b-col>
+      <b-col cols="2" @click="$router.push('/home')" style="padding:20px 20px 20px 20px;font-size:20px;"><fa icon="chevron-left"/></b-col>
       <b-col cols="8">
         <b-row class="text-center">
           <b-col><div class="title"><b class="taxzi-text-gradient">Chat</b></div></b-col>

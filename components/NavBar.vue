@@ -2,7 +2,7 @@
   <div class="nav-box">
     <b-row style="margin:26px 10px">
       <b-col v-for="data in navDatas" style="padding:0px">
-        <nuxt-link :to="data.link">
+        <div @click="$router.push(data.link)">
           <div v-if="data.id == active" class="nav-button-selected">
             <div>
               <fa style="font-size:26px;" :icon="data.icon"/>
@@ -20,7 +20,7 @@
               {{data.name}}
             </div>
           </div>
-        </nuxt-link>
+        </div>
       </b-col>
     </b-row>
   </div>

@@ -20,6 +20,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
 }
 
 .loading-box {
@@ -31,6 +32,7 @@
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 30px;
+  z-index: 101;
 }
 .spinner {
   margin: 60px auto;
