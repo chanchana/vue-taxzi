@@ -24,8 +24,12 @@
     "nuxt": "^2.0.0",
     "nuxt-ctk-date-time-picker": "^2.1.1",
     "nuxt-fontawesome": "^0.4.0",
+    "nuxt-gmaps": "^1.1.6",
     "nuxt-socket-io": "^1.0.4",
-    "nuxt-webfontloader": "^1.1.0"
+    "nuxt-webfontloader": "^1.1.0",
+    "sass": "^1.23.7",
+    "sass-loader": "^8.0.0",
+    "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",

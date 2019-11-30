@@ -50,6 +50,11 @@ export default {
     '@nuxtjs/proxy',
     'bootstrap-vue/nuxt',
     'nuxt-webfontloader',
+    ['nuxt-gmaps', {
+      key: 'AIzaSyAfksy0yaY_oQczIOX8_QtxmPLe8bILiJo',
+    }
+      //you can use libraries: ['places']
+    ],
     'nuxt-socket-io',
     'nuxt-webfontloader',
     ['nuxt-fontawesome', {
